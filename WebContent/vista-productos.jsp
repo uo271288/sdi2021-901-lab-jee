@@ -21,9 +21,11 @@
 		<h2>Vista-Productos</h2>
 		<ul>
 			<c:forEach var="producto" items="${productosTienda}">
-				<tr>
-					<li>${producto.toString()} €</li>
-				</tr>
+				<a
+					href="productos?producto=<c:out value="${producto.nombre}"/>"
+					class="btn btn-default"> <c:out value="${producto.toString()}€" />
+
+				</a>
 			</c:forEach>
 		</ul>
 	</div>

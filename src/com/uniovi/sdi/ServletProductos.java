@@ -1,6 +1,7 @@
 package com.uniovi.sdi;
 
 import java.io.IOException;
+import java.util.LinkedList;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -33,6 +34,11 @@ public class ServletProductos extends HttpServlet {
 			throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		List<Producto> productosTienda = new ProductosService().getProductos();
+		String producto = request.getParameter("producto");
+
+		if (producto != null) {
+			eliminarProducto(productosTienda, producto);
+		}
 		request.setAttribute("productosTienda", productosTienda);
 		getServletContext().getRequestDispatcher("/vista-productos.jsp").forward(request, response);
 	}
@@ -47,4 +53,12 @@ public class ServletProductos extends HttpServlet {
 		doGet(request, response);
 	}
 
+	private void eliminarProducto(List<Producto> productosTienda, String claveProducto) {
+		Producto productoABorrar = null;
+		for (Producto producto : productosTienda) {
+			if (producto.getNombre().equals(claveProducto))
+				productoABorrar = producto;
+		}
+		productosTienda.remove(productoABorrar);
+	}
 }
