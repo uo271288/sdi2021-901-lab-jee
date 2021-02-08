@@ -22,7 +22,7 @@
 		<ul>
 			<c:forEach var="producto" items="${productosTienda}">
 				<tr>
-					<li>${producto.toString()}€</li>
+					<li>${producto.toString()} €</li>
 				</tr>
 			</c:forEach>
 		</ul>
