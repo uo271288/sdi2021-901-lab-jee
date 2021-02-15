@@ -1,8 +1,12 @@
 package com.uniovi.entities;
 
+import javax.persistence.*;
 
+@Entity
 public class Professor {
 	
+	@Id
+	@GeneratedValue
 	private Long id;
 	private String DNI;
 	private String Nombre;
