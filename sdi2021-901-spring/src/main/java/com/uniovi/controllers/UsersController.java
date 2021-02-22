@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.uniovi.entities.Mark;
 import com.uniovi.entities.User;
 import com.uniovi.services.SecurityService;
 import com.uniovi.services.UsersService;
@@ -67,8 +68,11 @@ public class UsersController {
 
 	@RequestMapping(value = "/user/edit/{id}", method = RequestMethod.POST)
 	public String setEdit(Model model, @PathVariable Long id, @ModelAttribute User user) {
-		user.setId(id);
-		usersService.addUser(user);
+		User original = usersService.getUser(id); // modificar solo score y description
+		original.setName(user.getName());
+		original.setLastName(user.getLastName());
+		original.setDni(user.getDni());
+		usersService.addUser(original);
 		return "redirect:/user/details/" + id;
 	}
 
@@ -104,7 +108,7 @@ public class UsersController {
 
 	@RequestMapping("/user/list/update")
 	public String updateList(Model model) {
-		model.addAttribute("userList", usersService.getUsers());
+		model.addAttribute("usersList", usersService.getUsers());
 		return "user/list :: tableUsers";
 	}
 }
