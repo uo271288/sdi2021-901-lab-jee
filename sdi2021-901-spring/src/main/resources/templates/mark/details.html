@@ -5,17 +5,17 @@
 	<!-- Barra de Navegación superior -->
 	<nav th:replace="fragments/nav" />
 	<div class="container">
-		<h2>Detalles de la nota</h2>
+		<h2 th:text="#{details.mark.titulo}"></h2>
 		<div class="panel panel-default">
-			<div class="panel-heading">DNI</div>
+			<div class="panel-heading" th:text="#{details.mark.dni}"></div>
 			<div class="panel-body" th:text="${mark.user.dni}">28276</div>
 		</div>
 		<div class="panel panel-default">
-			<div class="panel-heading">Descripción</div>
-			<div class="panel-body">Ejercicio 1</div>
+			<div class="panel-heading" th:text="#{details.mark.descripcion}"></div>
+			<div class="panel-body" th:text="#{details.mark.descripcion.ej}"></div>
 		</div>
 		<div class="panel panel-default">
-			<div class="panel-heading">Puntuación</div>
+			<div class="panel-heading" th:text="#{details.mark.puntuacion}"></div>
 			<div class="panel-body">100</div>
 		</div>
 	</div>
