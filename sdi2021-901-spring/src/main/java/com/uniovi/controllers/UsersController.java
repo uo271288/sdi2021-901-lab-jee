@@ -101,4 +101,10 @@ public class UsersController {
 		model.addAttribute("markList", activeUser.getMarks());
 		return "home";
 	}
+
+	@RequestMapping("/user/list/update")
+	public String updateList(Model model) {
+		model.addAttribute("userList", usersService.getUsers());
+		return "user/list :: tableUsers";
+	}
 }
