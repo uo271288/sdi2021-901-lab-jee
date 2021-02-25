@@ -7,8 +7,8 @@
 		<h2 th:text="#{welcome.message}"></h2>
 		<h3 th:text="#{welcome.titulo}">Esta es una zona privada la web</h3>
 		<p th:text="#{welcome.autenticado}">
-			Usuario Autenticado como : <span th:inline="text">
-				[[${#httpServletRequest.remoteUser}]] </span>
+			Usuario Autenticado como : <span
+				sec:authentication="principal.username" th:inline="text"> </span>
 		</p>
 		<p th:text="#{welcome.marks}">Notas del usuario</p>
 		<div class="table-responsive">
@@ -28,9 +28,14 @@
 						<td th:text="${mark.id}">1</td>
 						<td th:text="${mark.description}">Ejercicio 1</td>
 						<td th:text="${mark.score}">10</td>
-						<td><a th:href="${'/mark/details/' + mark.id}" th:text="#{welcome.detalles}">detalles</a></td>
-						<td><a th:href="${'/mark/edit/' + mark.id}" th:text="#{welcome.modificar}">modificar</a></td>
-						<td><a th:href="${'/mark/delete/' + mark.id}" th:text="#{welcome.eliminar}">eliminar</a></td>
+						<td><a th:href="${'/mark/details/' + mark.id}"
+							th:text="#{welcome.detalles}">detalles</a></td>
+						<td><a sec:authorize="hasRole('ROLE_PROFESSOR')"
+							th:href="${'/mark/edit/' + mark.id}"
+							th:text="#{welcome.modificar}">modificar</a></td>
+						<td><a sec:authorize="hasRole('ROLE_PROFESSOR')"
+							th:href="${'/mark/delete/' + mark.id}"
+							th:text="#{welcome.eliminar}">eliminar</a></td>
 					</tr>
 				</tbody>
 			</table>
