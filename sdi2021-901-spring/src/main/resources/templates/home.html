@@ -7,8 +7,9 @@
 		<h2 th:text="#{welcome.message}"></h2>
 		<h3 th:text="#{welcome.titulo}">Esta es una zona privada la web</h3>
 		<p th:text="#{welcome.autenticado}">
-			Usuario Autenticado como : <span th:inline="text"> </span><span
-				sec:authentication="principal.username"></span>
+			Usuario Autenticado como : <span
+				sec:authentication="principal.username"></span><span
+				th:inline="text"> </span>
 		</p>
 		<p th:text="#{welcome.marks}">Notas del usuario</p>
 		<div class="table-responsive">
