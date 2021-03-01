@@ -21,11 +21,15 @@ public class ProfessorService {
 		return professors;
 	}
 
+	public Professor getProfessorByDni(String dni) {
+		return professorRepository.findByDni(dni);
+	}
+
 	public Professor getProfessor(Long id) {
 		return professorRepository.findById(id).get();
 	}
 
-	public void addProfessor(Professor professor) { // Si en Id es null le asignamos el ultimo + 1 de la lista
+	public void addProfessor(Professor professor) {
 		professorRepository.save(professor);
 	}
 

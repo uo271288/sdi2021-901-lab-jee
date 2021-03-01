@@ -6,41 +6,12 @@
 	<div class="container" style="text-align: center">
 		<h2 th:text="#{welcome.message}"></h2>
 		<h3 th:text="#{welcome.titulo}">Esta es una zona privada la web</h3>
-		<p th:text="#{welcome.autenticado}">
-			Usuario Autenticado como : <span
-				sec:authentication="principal.username"></span><span
-				th:inline="text"> </span>
+		<p>
+			<span th:text="#{welcome.autenticado}"></span><span
+				sec:authentication="principal.username"></span>
 		</p>
 		<p th:text="#{welcome.marks}">Notas del usuario</p>
-		<div class="table-responsive">
-			<table class="table table-hover">
-				<thead>
-					<tr>
-						<th class="col-md-1">id</th>
-						<th th:text="#{welcome.descripcion}">Descripción</th>
-						<th th:text="#{welcome.puntuacion}">Puntuación</th>
-						<th class="col-md-1"></th>
-						<th class="col-md-1"></th>
-						<th class="col-md-1"></th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr th:each="mark : ${markList}">
-						<td th:text="${mark.id}">1</td>
-						<td th:text="${mark.description}">Ejercicio 1</td>
-						<td th:text="${mark.score}">10</td>
-						<td><a th:href="${'/mark/details/' + mark.id}"
-							th:text="#{welcome.detalles}">detalles</a></td>
-						<td><a sec:authorize="hasRole('ROLE_PROFESSOR')"
-							th:href="${'/mark/edit/' + mark.id}"
-							th:text="#{welcome.modificar}">modificar</a></td>
-						<td><a sec:authorize="hasRole('ROLE_PROFESSOR')"
-							th:href="${'/mark/delete/' + mark.id}"
-							th:text="#{welcome.eliminar}">eliminar</a></td>
-					</tr>
-				</tbody>
-			</table>
-		</div>
+		<div th:replace="fragments/marksTable"></div>
 	</div>
 	<footer th:replace="fragments/footer" />
 </body>

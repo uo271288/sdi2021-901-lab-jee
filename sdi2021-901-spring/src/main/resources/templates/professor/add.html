@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head th:replace="fragments/head" />
+
+<body>
+
+	<!-- Barra de Navegación superior -->
+	<nav th:replace="fragments/nav" />
+
+	<div class="container">
+		<h2 th:text="#{professor.add.titulo}">Añadir un profesor</h2>
+
+
+		<form class="form-horizontal" method="post" action="/professor/add"
+			th:object="${professor}">
+			<div class="form-group">
+				<label th:text="#{professor.add.nombre}"
+					class="control-label col-sm-2" for="nombre">Nombre:</label>
+				<div class="col-sm-10">
+					<input type="text" class="form-control" name="nombre"
+						placeholder="Nombre del profesor" required="true" /> <span
+						class="text-danger" th:if="${#fields.hasErrors('nombre')}"
+						th:errors="*{nombre}"></span>
+				</div>
+			</div>
+			<div class="form-group">
+				<label th:text="#{professor.add.apellidos}"
+					class="control-label col-sm-2" for="apellido">Apellidos:</label>
+				<div class="col-sm-10">
+					<input type="text" class="form-control" name="apellido"
+						placeholder="Apellido del profesor" required="true" /> <span
+						class="text-danger" th:if="${#fields.hasErrors('apellido')}"
+						th:errors="*{apellido}"></span>
+				</div>
+			</div>
+			<div class="form-group">
+				<label th:text="#{professor.add.dni}" class="control-label col-sm-2"
+					for="dni">DNI:</label>
+				<div class="col-sm-10">
+					<input type="text" class="form-control" name="dni"
+						placeholder="Dni del profesor" required="true" /> <span
+						class="text-danger" th:if="${#fields.hasErrors('dni')}"
+						th:errors="*{dni}"></span>
+				</div>
+			</div>
+			<div class="form-group">
+				<label th:text="#{professor.add.categoria}"
+					class="control-label col-sm-2" for="categoria">Categoria:</label>
+				<div class="col-sm-10">
+					<input type="text" class="form-control" name="categoria"
+						placeholder="Categoria" required="true" />
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="col-sm-offset-2 col-sm-10">
+					<button th:text="#{boton.enviar}" type="submit"
+						class="btn btn-primary">Enviar</button>
+				</div>
+			</div>
+		</form>
+	</div>
+	<footer th:replace="fragments/footer"></footer>
+</body>
+</html>

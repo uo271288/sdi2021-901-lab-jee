@@ -8,21 +8,13 @@ public class Professor {
 	@Id
 	@GeneratedValue
 	private Long id;
-	private String DNI;
-	private String Nombre;
-	private String Apellidos;
-	private String Categoria;
+	private String dni;
+	private String nombre;
+	private String apellido;
+	private String categoria;
 
 	public Professor() {
-
-	}
-
-	public Professor(Long id, String dNI, String nombre, String apellidos, String categoria) {
-		this.id = id;
-		DNI = dNI;
-		Nombre = nombre;
-		Apellidos = apellidos;
-		Categoria = categoria;
+		super();
 	}
 
 	public Long getId() {
@@ -33,41 +25,52 @@ public class Professor {
 		this.id = id;
 	}
 
-	public String getDNI() {
-		return DNI;
+	public Professor(String dNI, String nombre, String apellidos, String categoria) {
+		super();
+		this.dni = dNI;
+		this.nombre = nombre;
+		this.setApellido(apellidos);
+		this.categoria = categoria;
 	}
 
-	public void setDNI(String dNI) {
-		DNI = dNI;
+	public Professor(Long id, String dNI, String nombre, String apellidos, String categoria) {
+		super();
+		this.id = id;
+		dni = dNI;
+		this.nombre = nombre;
+		this.setApellido(apellidos);
+		this.categoria = categoria;
+	}
+
+	public String getDni() {
+		return dni;
+	}
+
+	public void setDni(String dni) {
+		this.dni = dni;
 	}
 
 	public String getNombre() {
-		return Nombre;
+		return nombre;
 	}
 
 	public void setNombre(String nombre) {
-		Nombre = nombre;
-	}
-
-	public String getApellidos() {
-		return Apellidos;
-	}
-
-	public void setApellidos(String apellidos) {
-		Apellidos = apellidos;
+		this.nombre = nombre;
 	}
 
 	public String getCategoria() {
-		return Categoria;
+		return categoria;
 	}
 
 	public void setCategoria(String categoria) {
-		Categoria = categoria;
+		this.categoria = categoria;
 	}
 
-	@Override
-	public String toString() {
-		return "Professor [id=" + id + ", DNI=" + DNI + ", Nombre=" + Nombre + ", Apellidos=" + Apellidos
-				+ ", Categoria=" + Categoria + "]";
+	public String getApellido() {
+		return apellido;
+	}
+
+	public void setApellido(String apellido) {
+		this.apellido = apellido;
 	}
 }
