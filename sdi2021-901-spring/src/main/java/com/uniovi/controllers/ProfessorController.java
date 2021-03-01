@@ -1,6 +1,8 @@
 package com.uniovi.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -71,8 +73,10 @@ public class ProfessorController {
 	}
 
 	@RequestMapping("/professor/list")
-	public String getList(Model model) {
-		model.addAttribute("professors", professorService.getProfessor());
+	public String getList(Model model, Pageable pageable) {
+		Page<Professor> professors = professorService.getProfessor(pageable);
+		model.addAttribute("professors", professors.getContent());
+		model.addAttribute("page", professors);
 		return "professor/list";
 	}
 }

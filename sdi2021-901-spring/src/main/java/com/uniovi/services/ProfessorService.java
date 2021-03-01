@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.uniovi.entities.Professor;
@@ -18,6 +21,11 @@ public class ProfessorService {
 	public List<Professor> getProfessor() {
 		List<Professor> professors = new ArrayList<Professor>();
 		professorRepository.findAll().forEach(professors::add);
+		return professors;
+	}
+
+	public Page<Professor> getProfessor(Pageable pageable) {
+		Page<Professor> professors = professorRepository.findAll(pageable);
 		return professors;
 	}
 
