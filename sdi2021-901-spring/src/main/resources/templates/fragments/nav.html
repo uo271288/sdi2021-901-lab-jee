@@ -28,11 +28,11 @@
 						<li><a href="/user/add" th:text="#{agregar.usuario}"></a></li>
 						<li><a href="/user/list" th:text="#{ver.usuarios}"></a></li>
 					</ul></li>
-				<li id="professors-menu" class="dropdown"><a class="dropdown-toggle"
-					data-toggle="dropdown" href="#" th:text="#{gestion.profesores}"><span
-						class="caret"></span></a>
+				<li id="professors-menu" class="dropdown"><a
+					class="dropdown-toggle" data-toggle="dropdown" href="#"
+					th:text="#{gestion.profesores}"><span class="caret"></span></a>
 					<ul class="dropdown-menu">
-						<li><a
+						<li sec:authorize="hasRole('ROLE_ADMIN')"><a
 							href="/professor/add" th:text="#{agregar.profesor}"></a></li>
 						<li><a href="/professor/list" th:text="#{ver.profesor}"></a></li>
 					</ul></li>
