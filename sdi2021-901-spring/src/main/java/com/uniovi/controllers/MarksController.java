@@ -3,8 +3,6 @@ package com.uniovi.controllers;
 import java.security.Principal;
 import java.util.LinkedList;
 
-import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
@@ -27,9 +25,6 @@ import com.uniovi.validators.MarkValidator;
 
 @Controller
 public class MarksController {
-
-	@Autowired
-	private HttpSession httpSession;
 
 	@Autowired // Inyectar el servicio
 	private MarksService marksService;
@@ -68,16 +63,19 @@ public class MarksController {
 	@RequestMapping(value = "/mark/add", method = RequestMethod.GET)
 	public String setMark(Model model) {
 		model.addAttribute("mark", new Mark());
+		model.addAttribute("usersList", usersService.getUsers());
 		return "mark/add";
 	}
 
 	@RequestMapping(value = "/mark/add", method = RequestMethod.POST)
-	public String setMark(@Validated Mark mark, BindingResult result) {
+	public String setMark(@Validated Mark mark, BindingResult result, Model model) {
 		markValidator.validate(mark, result);
 		if (result.hasErrors()) {
+			model.addAttribute("usersList", usersService.getUsers());
 			return "mark/add";
 		}
 		marksService.addMark(mark);
+
 		return "redirect:/mark/list";
 	}
 
