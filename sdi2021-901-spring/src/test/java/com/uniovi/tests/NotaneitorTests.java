@@ -192,7 +192,7 @@ public class NotaneitorTests {
 	PO_HomeView.clickOption(driver, "login", "class", "btn btn-primary");
 	// Rellenamos el formulario
 	PO_LoginView.fillForm(driver, "99999990A", "123457");
-	// COmprobamos que entramos en la pagina privada de Alumno
+	// COmprobamos que volvemos a la página principal
 	PO_View.checkElement(driver, "text", "Identifícate");
     }
 
@@ -223,7 +223,7 @@ public class NotaneitorTests {
 		PO_View.getTimeout());
 	assertTrue(elementos.size() == 4);
 	// Ahora nos desconectamos
-	PO_PrivateView.clickOption(driver, "logout", "text", "Identifícate");
+	PO_PrivateView.logout(driver);
     }
 
     // PR13. Loguearse como estudiante y ver los detalles de la nota con Descripcion
@@ -258,24 +258,9 @@ public class NotaneitorTests {
 	PO_LoginView.fillForm(driver, "99999993D", "123456");
 	// COmprobamos que entramos en la pagina privada del Profesor
 	PO_View.checkElement(driver, "text", "99999993D");
-	// Pinchamos en la opción de menu de Notas: //li[contains(@id, 'marks-menu')]/a
-	List<WebElement> elementos = PO_View.checkElement(driver, "free", "//li[contains(@id, 'marks-menu')]/a");
-	elementos.get(0).click();
-	// Esperamos a aparezca la opción de añadir nota: //a[contains(@href,
-	// 'mark/add')]
-	elementos = PO_View.checkElement(driver, "free", "//a[contains(@href, 'mark/add')]");
-	// Pinchamos en agregar Nota.
-	elementos.get(0).click();
-	// Ahora vamos a rellenar la nota. //option[contains(@value, '4')]
-	PO_PrivateView.fillFormAddMark(driver, 3, "Nota Nueva 1", "8");
-	// Esperamos a que se muestren los enlaces de paginación la lista de notas
-	elementos = PO_View.checkElement(driver, "free", "//a[contains(@class, 'page-link')]");
-	// Nos vamos a la última página
-	elementos.get(3).click();
-	// Comprobamos que aparece la nota en la pagina
-	elementos = PO_View.checkElement(driver, "text", "Nota Nueva 1");
+	PO_PrivateView.addMark(driver, "Nota Nueva 1 zzzzzzzzzzzzzzz", "8");
 	// Ahora nos desconectamos
-	PO_PrivateView.clickOption(driver, "logout", "text", "Identifícate");
+	PO_PrivateView.logout(driver);
     }
 
     // PRN. Loguearse como profesor, vamos a la ultima página y Eliminamos la Nota
