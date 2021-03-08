@@ -50,4 +50,33 @@ public class PO_PrivateView extends PO_NavView {
 	// Comprobamos que aparece la nota en la pagina
 	elementos = PO_View.checkElement(driver, "text", "Nota Nueva 1 zzzzzzzzzzzzzzz");
     }
+
+    static public void fillFormAddProfessor(WebDriver driver, String dnip, String nombrep, String apellidop,
+	    String categoriap) {
+	// Esperamos 5 segundo a que carge el DOM porque en algunos equipos falla
+	SeleniumUtils.esperarSegundos(driver, 5);
+	WebElement dni = driver.findElement(By.name("dni"));
+	dni.clear();
+	dni.sendKeys(dnip);
+	WebElement nombre = driver.findElement(By.name("nombre"));
+	nombre.clear();
+	nombre.sendKeys(nombrep);
+	WebElement apellido = driver.findElement(By.name("apellido"));
+	apellido.clear();
+	apellido.sendKeys(apellidop);
+	WebElement categoria = driver.findElement(By.name("categoria"));
+	categoria.clear();
+	categoria.sendKeys(categoriap);
+	By boton = By.className("btn");
+	driver.findElement(boton).click();
+    }
+
+    static public void addProfessor(WebDriver driver, String dni, String nombre, String apellido, String categoria) {
+	List<WebElement> elementos = PO_View.checkElement(driver, "free", "//li[contains(@id, 'professors-menu')]/a");
+	elementos.get(0).click();
+	elementos = PO_View.checkElement(driver, "free", "//a[contains(@href, 'professor/add')]");
+	elementos.get(0).click();
+	PO_PrivateView.fillFormAddProfessor(driver, dni, nombre, apellido, categoria);
+	
+    }
 }
